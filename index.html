@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<script>
+					
+				document.addEventListener('DOMContentLoaded', function () {
+					if (Notification.permission !== "granted")
+						Notification.requestPermission();
+					});
+					setInterval(function(){ notifyMe(); }, 1.2e+6);
+					function notifyMe() {
+					var d = new Date();
+					console.log(d.getHours() + ":" + d.getMinutes()+ ":" +  d.getSeconds());
+					if (!Notification) {
+						console.log('Desktop notifications not available in your browser. Try Chromium.')
+						alert('Desktop notifications not available in your browser. Try Chromium.'); 
+						return;
+					}
+
+					if (Notification.permission !== "granted")
+						Notification.requestPermission();
+					else {
+						var notification = new Notification('Take a break! ', {
+						icon: 'http://a2.mzstatic.com/us/r30/Purple2/v4/ff/dd/15/ffdd15ec-a77e-8009-03de-fadf25139b9b/icon175x175.png',
+						body: "Use the 20-20-20 rule. Every 20 minutes, take a 20-second break and focus your eyes on something at least 20 feet away.",
+					});
+
+					notification.onclick = function () {
+						window.open("Hello world");      
+					};
+				
+					}
+
+				}
+		</script>
+	</head>
+	<body>
+	<button text="Notify" onclick=notifyMe()>Notify Me!</button>
+		<div>Remember 20-20-20 rule!</div>
+	</body>
+
+
+</html>
